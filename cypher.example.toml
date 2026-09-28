@@ -1,0 +1,31 @@
+[paths]
+# default output directories
+models_dir = "models"
+reports_dir = "reports"
+
+[train]
+# contamination: estimated fraction of anomalies in training data
+contamination = 0.02
+n_estimators = 200
+max_samples = "auto"
+random_state = 42
+
+[score]
+# threshold below which anomaly (-1) is flagged; let IF handle, but keep for post-filtering
+score_threshold = -0.2
+
+[features]
+# list of enabled feature groups
+enable_time = true
+enable_srcip = true
+enable_geo = false   # placeholder; not implemented by default (offline)
+enable_http = true
+enable_auth = true
+enable_counts = true
+
+[rules]
+# basic rule thresholds (per minute) for bursts
+failed_ssh_per_min = 8
+invalid_user_per_min = 5
+sudo_fail_per_min = 3
+http_5xx_per_min = 20
